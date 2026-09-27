@@ -152,6 +152,8 @@ class ApiInterceptor extends Interceptor {
         return '网络连接超时，请检查网络设置';
       case DioExceptionType.receiveTimeout:
         return '响应超时，请稍后重试！';
+      case DioExceptionType.transformTimeout:
+        return '数据处理超时，请稍后重试！';
       case DioExceptionType.sendTimeout:
         return '发送请求超时，请检查网络设置';
       case DioExceptionType.unknown:

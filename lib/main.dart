@@ -113,11 +113,11 @@ class C001APKAPP extends StatelessWidget {
           popupMenuTheme: PopupMenuThemeData(
             surfaceTintColor: lightColorScheme.surfaceTint,
           ),
-          cardTheme: CardTheme(
+          cardTheme: CardThemeData(
             surfaceTintColor: lightColorScheme.surfaceTint,
             shadowColor: Colors.transparent,
           ),
-          dialogTheme: DialogTheme(
+          dialogTheme: DialogThemeData(
             surfaceTintColor: lightColorScheme.surfaceTint,
           ),
           inputDecorationTheme: InputDecorationTheme(
@@ -144,11 +144,11 @@ class C001APKAPP extends StatelessWidget {
           popupMenuTheme: PopupMenuThemeData(
             surfaceTintColor: darkColorScheme.surfaceTint,
           ),
-          cardTheme: CardTheme(
+          cardTheme: CardThemeData(
             surfaceTintColor: darkColorScheme.surfaceTint,
             shadowColor: Colors.transparent,
           ),
-          dialogTheme: DialogTheme(
+          dialogTheme: DialogThemeData(
             surfaceTintColor: darkColorScheme.surfaceTint,
           ),
           inputDecorationTheme: InputDecorationTheme(

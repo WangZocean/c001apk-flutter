@@ -65,23 +65,31 @@ class FeedController extends CommonController {
         await NetworkRepo.getDataFromUrl(url: '/v6/feed/detail?id=$id');
     if (response is Success) {
       Datum data = (response.response as Datum);
-      if (data.messageRawOutput != 'null') {
+      if (!data.messageRawOutput.isNullOrEmpty &&
+          data.messageRawOutput != 'null') {
         List<dynamic> jsonList = jsonDecode(data.messageRawOutput!);
         articleList = jsonList
             .map((json) => FeedArticle.fromJson(json))
             .where((item) => ['text', 'image', 'shareUrl'].contains(item.type))
             .toList();
-        if (!data.title.isNullOrEmpty) {
-          articleList!.insert(0, FeedArticle(type: 'title', title: data.title));
+        if (articleList!.isNotEmpty) {
+          if (!data.title.isNullOrEmpty) {
+            articleList!
+                .insert(0, FeedArticle(type: 'title', title: data.title));
+          }
+          if (!data.messageCover.isNullOrEmpty) {
+            articleList!
+                .insert(0, FeedArticle(type: 'image', url: data.messageCover));
+          }
+          articleImgList = articleList!
+              .where((item) => item.type == 'image')
+              .map((item) => item.url.orEmpty)
+              .toList();
+        } else {
+          // 正文在 data.message 里（普通动态 message_raw_output 为空数组，
+          // title 只是“xx的动态”），回退给 FeedCard 渲染，否则详情页只剩标题
+          articleList = null;
         }
-        if (!data.messageCover.isNullOrEmpty) {
-          articleList!
-              .insert(0, FeedArticle(type: 'image', url: data.messageCover));
-        }
-        articleImgList = articleList!
-            .where((item) => item.type == 'image')
-            .map((item) => item.url.orEmpty)
-            .toList();
       }
       if (!data.topReplyRows.isNullOrEmpty) {
         topReply = data.topReplyRows![0];

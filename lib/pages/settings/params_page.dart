@@ -32,7 +32,7 @@ class _ParamsPageState extends State<ParamsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Params'),
+        title: const Text('接口参数'),
         leading: const BackButton(),
       ),
       body: ListView(
@@ -41,31 +41,31 @@ class _ParamsPageState extends State<ParamsPage> {
         ),
         children: [
           EdittextItem(
-            title: 'Version Name',
+            title: '版本名称',
             boxKey: SettingsBoxKey.versionName,
             needUpdateUserAgent: true,
             onChanged: _paramsController.onChanged,
           ),
           const EdittextItem(
-            title: 'Api Version',
+            title: 'Api 版本',
             boxKey: SettingsBoxKey.apiVersion,
           ),
           EdittextItem(
-            title: 'Version Code',
+            title: '版本号',
             boxKey: SettingsBoxKey.versionCode,
             needUpdateUserAgent: true,
             onChanged: _paramsController.onChanged,
           ),
           EdittextItem(
             key: manufacturerKey,
-            title: 'Manufacturer',
+            title: '厂商',
             boxKey: SettingsBoxKey.manufacturer,
             needUpdateXAppDevice: true,
             onChanged: () => _paramsController.onChanged(true),
           ),
           EdittextItem(
             key: brandKey,
-            title: 'Brand',
+            title: '品牌',
             boxKey: SettingsBoxKey.brand,
             needUpdateUserAgent: true,
             needUpdateXAppDevice: true,
@@ -73,7 +73,7 @@ class _ParamsPageState extends State<ParamsPage> {
           ),
           EdittextItem(
             key: modelKey,
-            title: 'Model',
+            title: '型号',
             boxKey: SettingsBoxKey.model,
             needUpdateUserAgent: true,
             needUpdateXAppDevice: true,
@@ -81,7 +81,7 @@ class _ParamsPageState extends State<ParamsPage> {
           ),
           EdittextItem(
             key: buildKey,
-            title: 'BuildNumber',
+            title: '构建号',
             boxKey: SettingsBoxKey.buildNumber,
             needUpdateUserAgent: true,
             needUpdateXAppDevice: true,
@@ -94,14 +94,14 @@ class _ParamsPageState extends State<ParamsPage> {
           ),
           EdittextItem(
             key: androidKey,
-            title: 'Android Version',
+            title: 'Android 版本',
             boxKey: SettingsBoxKey.androidVersion,
             needUpdateUserAgent: true,
             onChanged: _paramsController.onChanged,
           ),
           Obx(
             () => ListTile(
-              title: const Text('User Angent'),
+              title: const Text('User Agent'),
               subtitle: Text(_paramsController.userAgent.value),
               onTap: () => Utils.copyText(_paramsController.userAgent.value),
             ),
@@ -114,7 +114,7 @@ class _ParamsPageState extends State<ParamsPage> {
             ),
           ),
           ListTile(
-            title: const Text('Regenerate Params'),
+            title: const Text('重新生成参数'),
             onTap: () async {
               await GStorage.regenerateParams();
               manufacturerKey.currentState?.updateValue();
